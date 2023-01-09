@@ -1,12 +1,17 @@
-import './App.css';
+import styles from './App.module.css';
 
 // JSX (function that returns HTML tags)
 function App() {
+  const age = 19;
+  const isGreen = true;
+
   return (
-    <div className="App"> 
-      <Job salary={93034} position="Senior SDE" company="Ford" />
-      <Job salary={190532} position="UI Designer" company="Google" />
-      <Job salary={53414} position="Junior SDE" company="Amazon" />
+    // using ternary operators
+    // && followed by codes to execute should the condition be true
+    <div className="App">
+      {age >= 18 ? <h1>OVER AGE</h1> : <h1>UNDER AGE</h1>} 
+      <h1 style={{ color: isGreen ? "green" : "red" }}> THIS HAS COLOR </h1>
+      {isGreen && <button> THIS IS A BUTTON </button>} 
     </div>
   );
 }
