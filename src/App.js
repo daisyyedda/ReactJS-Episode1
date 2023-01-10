@@ -5,7 +5,7 @@ import { useState } from 'react'
 // JSX (function that returns HTML tags)
 function App() {
   // state (a variable that are subject to change)
-  const [textColor, setTextColor] = useState("black");
+  const [count, setCount] = useState(0);
 
   // event is used to grab information about input
 
@@ -16,15 +16,35 @@ function App() {
   };
   */
 
+  const increaseCount = () => {
+    setCount(count + 1);
+  };
+
+  const decreaseCount = () => {
+    setCount(count - 1);
+  };
+
+  const setToZero = () => {
+    setCount(0);
+  }
+
   return (
     // && followed by codes to execute should the condition be true
     // event (something that happens as a result of something else)
     <div className="App">
       <button onClick={() => {
-        // alternating the colors when clicking the button
-        setTextColor(textColor === "black" ? "red" : "black");
-      }}> Show/Hide Text </button>
-      <h1 style={{color: textColor}}> HI MY NAME IS PEDRO </h1>
+        increaseCount(count);
+      }}>Increase</button>
+      
+      <button onClick={() => {
+        decreaseCount(count);
+      }}>Decrease</button>
+      
+      <button onClick={() => {
+        setToZero(count);
+      }}>Set to Zero</button>
+
+      {count}
     </div>
   );
 }
