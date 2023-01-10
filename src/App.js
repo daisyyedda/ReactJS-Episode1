@@ -3,39 +3,43 @@ import { User } from './User'
 import { useState } from 'react'
 
 // JSX (function that returns HTML tags)
+// state (a variable that are subject to change)
+// ... (an array composed of everything in the old array and the new thing after)
+// && (followed by codes to execute should the condition be true)
+// event (used to grab information about input)
+
 function App() {
-  // state (a variable that are subject to change)
-  const [count, setCount] = useState(0);
+  
+  const [todoList, setTodoList] = useState([]);
+  const [newTask, setNewTask] = useState("");
 
-  // event is used to grab information about input
-
-
-  /* effect when button is on click
-  const increaseAge = () => {
-    setAge(age - 1);
-  };
-  */
-
-  const increaseCount = () => {
-    setCount(count + 1);
+  const handleChange = (event) => {
+    setNewTask(event.target.value);
   };
 
-  const decreaseCount = () => {
-    setCount(count - 1);
+  
+  const addTask = () => {
+    const newTodoList = [...todoList, newTask];
+    setTodoList(newTodoList);
   };
 
-  const setToZero = () => {
-    setCount(0);
-  }
+  // effect when button is on click
+  // const increaseAge = () => {
+  //   setAge(age - 1);
+  // };
 
-  return (
-    // && followed by codes to execute should the condition be true
-    // event (something that happens as a result of something else)
+  return (  
     <div className="App">
-      <button onClick={increaseCount}>Increase</button>   
-      <button onClick={decreaseCount}>Decrease</button>
-      <button onClick={setToZero}>Set to Zero</button>
-      {count}
+      <div className='addTask'>
+        <input onChange={handleChange}/>
+        <button onClick={addTask}> Add Task </button>
+      </div>
+      <div className='list'>
+        {todoList.map((task) => {
+          // loop through the task and display to screen
+          return <h1>{task}</h1>
+        })}
+      </div>
     </div>
   );
 }
