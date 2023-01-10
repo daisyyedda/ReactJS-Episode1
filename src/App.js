@@ -1,26 +1,30 @@
 import styles from './App.module.css';
-import {User} from './User'
+import { User } from './User'
+import { useState } from 'react'
 
 // JSX (function that returns HTML tags)
 function App() {
-  const age = 19;
-  const isGreen = true;
-  const users = [
-    { name: "Pedro", age: 21 },
-    { name: "Jake", age: 25 },
-    { name: "Jessica", age: 45 }
-  ];
+  // state (a variable that are subject to change)
+  const [textColor, setTextColor] = useState("black");
+
+  // event is used to grab information about input
+
+
+  /* effect when button is on click
+  const increaseAge = () => {
+    setAge(age - 1);
+  };
+  */
 
   return (
-    // using ternary operators
     // && followed by codes to execute should the condition be true
+    // event (something that happens as a result of something else)
     <div className="App">
-      {users.map((user, key) => {
-        return <User name={user.name} age={user.age}/>;
-      })}
-      {age >= 18 ? <h1>OVER AGE</h1> : <h1>UNDER AGE</h1>} 
-      <h1 style={{ color: isGreen ? "green" : "red" }}> THIS HAS COLOR </h1>
-      {isGreen && <button> CLICK </button>} 
+      <button onClick={() => {
+        // alternating the colors when clicking the button
+        setTextColor(textColor === "black" ? "red" : "black");
+      }}> Show/Hide Text </button>
+      <h1 style={{color: textColor}}> HI MY NAME IS PEDRO </h1>
     </div>
   );
 }
