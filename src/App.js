@@ -32,18 +32,9 @@ function App() {
     // && followed by codes to execute should the condition be true
     // event (something that happens as a result of something else)
     <div className="App">
-      <button onClick={() => {
-        increaseCount(count);
-      }}>Increase</button>
-      
-      <button onClick={() => {
-        decreaseCount(count);
-      }}>Decrease</button>
-      
-      <button onClick={() => {
-        setToZero(count);
-      }}>Set to Zero</button>
-
+      <button onClick={increaseCount}>Increase</button>   
+      <button onClick={decreaseCount}>Decrease</button>
+      <button onClick={setToZero}>Set to Zero</button>
       {count}
     </div>
   );
