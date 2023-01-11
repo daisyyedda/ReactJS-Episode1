@@ -9,6 +9,7 @@ event (used to grab information about input)
 import "./App.css";
 import { useState } from "react";
 import { Task } from "./Task";
+import { Text } from "./Text";
 
 function App() {
   const [todoList, setTodoList] = useState([]);
