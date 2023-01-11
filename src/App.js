@@ -1,7 +1,3 @@
-import './App.css';
-import { User } from './User'
-import { useState } from 'react'
-
 /*
 JSX (function that returns HTML tags)
 state (a variable that are subject to change)
@@ -10,8 +6,11 @@ state (a variable that are subject to change)
 event (used to grab information about input)
 */
 
+import "./App.css";
+import { useState } from "react";
+import { Task } from "./Task";
+
 function App() {
-  
   const [todoList, setTodoList] = useState([]);
   const [newTask, setNewTask] = useState("");
 
@@ -20,36 +19,46 @@ function App() {
   };
 
   const addTask = () => {
-    // object
     const task = {
       id: todoList.length === 0 ? 1 : todoList[todoList.length - 1].id + 1,
-      taskName: newTask
-    }
-    setTodoList([...todoList, task]);
+      taskName: newTask,
+      completed: false,
+    };
+    setTodoList(task.taskName !== "" ? [...todoList, task] : todoList);
   };
 
   const deleteTask = (id) => {
     setTodoList(todoList.filter((task) => task.id !== id));
-  }
+  };
 
+  const completeTask = (id) => {
+    setTodoList(
+      todoList.map((task) => {
+        if (task.id === id) {
+          return { ...task, completed: true };
+        } else {
+          return task;
+        }
+      })
+    );
+  };
 
-  // effect when button is on click
-  // const increaseAge = () => {
-  //   setAge(age - 1);
-  // };
-
-  return (  
+  return (
     <div className="App">
-      <div className='addTask'>
-        <input onChange={handleChange}/>
-        <button onClick={addTask}> Add Task </button>
+      <div className="addTask">
+        <input onChange={handleChange} />
+        <button onClick={addTask}> Add Task</button>
       </div>
-      <div className='list'>
+      <div className="list">
         {todoList.map((task) => {
-          return (<div>
-            <h1>{task.taskName}</h1>
-            <button onClick={() => deleteTask(task.id)}>Delete</button>
-          </div>
+          return (
+            <Task
+              taskName={task.taskName}
+              id={task.id}
+              completed={task.completed}
+              deleteTask={deleteTask}
+              completeTask={completeTask}
+            />
           );
         })}
       </div>
