@@ -5,7 +5,5 @@ import App from './App';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // StrictMode checks if useEffect is handled correctly
-  <React.StrictMode>
     <App />
-  </React.StrictMode>
 );
