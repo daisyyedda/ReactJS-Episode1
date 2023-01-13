@@ -14,27 +14,30 @@ import { Contact } from "./pages/Contact";
 import { Error } from "./pages/Error";
 import { Navbar } from "./pages/Navbar";
 import { useState, createContext } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-export const AppContext = createContext();
-
+// in this file, App is the highest-level component
 function App() {
-  const [username, setUsername] = useState("Daisy");
+  const client = new QueryClient({defaultOptions: {
+    queries: {
+      // prevents refreshing of data when window is refocused
+      refetchOnWindowFocus: false
+    },
+  }});
 
   return (
     <div className="App">
-      <AppContext.Provider value={{ username, setUsername }}>
+      <QueryClientProvider client={client}>
         <Router>
           <Navbar/>
           <Routes>
           <Route path="/" element={<Home />} />
-          <Route 
-            path="/profile" 
-            element={<Profile/>} />
-          <Route path="/contact" element={<Contact/>} />
-          <Route path="*" element={<Error/>} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<Error />} />
           </Routes>
         </Router>
-      </AppContext.Provider>
+      </QueryClientProvider>
     </div>
   );
 }
