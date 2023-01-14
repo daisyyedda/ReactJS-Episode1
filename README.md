@@ -1,6 +1,6 @@
-# Link to Project
+# Social Media App
 
-https://react-app-c6fd3.web.app
+Link to project: https://react-app-c6fd3.web.app
 
 ## Available Scripts
 
